@@ -7,7 +7,7 @@
     "start-dev": "npm run build-dev",
     "build-dev": "nodemon 'src/server.ts' --exec 'ts-node' src/server.ts -e ts,graphql",
     "start": "node 'dist/server.js'",
-    "build": "tsc -p . && ncp src/schema dist/schema"
+    "build": "tsc -p . && cpx 'src/api/**/*.graphql' dist/api"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "@types/express": "^4.17.1",
     "@types/graphql": "^14.5.0",
     "@types/node": "^12.7.2",
+    "cpx": "^1.5.0",
     "graphql-import": "^0.7.1",
     "graphql-import-node": "0.0.4",
     "nodemon": "^1.19.1",
@@ -39,7 +40,6 @@
     "express": "^4.17.1",
     "graphql": "^14.5.3",
     "http": "0.0.0",
-    "merge-graphql-schemas": "^1.7.0",
-    "ncp": "^2.0.0"
+    "merge-graphql-schemas": "^1.7.0"
   }
 }
