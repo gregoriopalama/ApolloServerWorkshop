@@ -1,0 +1,61 @@
+type Ingredient {
+  id: ID!
+  name: String
+  unit: String
+  quantity: String
+}
+
+type Step {
+  id: ID!
+  name: String
+  description: String
+  order: Int
+}
+
+type Recipe {
+  id: ID!
+  name: String
+  description: String
+  servings: Int
+  time: Int
+  category: Category
+  ingredients: [Ingredient]
+  steps: [Step]
+}
+
+input IngredientInput {
+  name: String
+  unit: String
+  quantity: String
+}
+
+input StepInput {
+  name: String
+  description: String
+  order: Int
+}
+
+input RecipeInput {
+  name: String
+  description: String
+  servings: Int
+  time: Int
+  category: ID
+}
+
+type Query {
+  recipe(id: ID!): Recipe!
+  recipes: [Recipe]
+}
+
+type Mutation {
+  createRecipe(data: RecipeInput): Recipe!
+  updateRecipe(id: ID, data: RecipeInput): Recipe!
+  deleteRecipe(id: ID): Boolean!
+  addIngredientToRecipe(recipeId: ID, data: IngredientInput): Recipe!
+  updateIngredientForRecipe(id: ID, data: IngredientInput): Recipe!
+  deleteIngredientFromRecipe(id: ID): Boolean!
+  addStepToRecipe(recipeId: ID, data: StepInput): Recipe!
+  updateStepForRecipe(id: ID, data: StepInput): Recipe!
+  deleteStepFromRecipe(id: ID): Boolean!
+}
